@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="vi" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Chi tiết đơn hàng - Kinetic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f1f3ff",
+                        "surface-container-high": "#e1e8ff",
+                        "outline": "#737685",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#33e6ff",
+                        "tertiary-fixed": "#9cf0ff",
+                        "secondary-container": "#0cb3ff",
+                        "surface-bright": "#faf9ff",
+                        "secondary-fixed-dim": "#8bceff",
+                        "on-secondary-fixed-variant": "#004b6f",
+                        "background": "#faf9ff",
+                        "on-secondary-fixed": "#001e2f",
+                        "on-tertiary-fixed-variant": "#004f58",
+                        "on-secondary-container": "#004261",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d8e2ff",
+                        "surface": "#faf9ff",
+                        "on-primary-fixed": "#001848",
+                        "on-surface": "#051a3e",
+                        "on-primary-container": "#c4d2ff",
+                        "secondary-fixed": "#c9e6ff",
+                        "tertiary-container": "#006470",
+                        "surface-tint": "#0c56d0",
+                        "outline-variant": "#c3c6d6",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "inverse-primary": "#b2c5ff",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dae2ff",
+                        "surface-container": "#e9edff",
+                        "on-tertiary-fixed": "#001f24",
+                        "on-background": "#051a3e",
+                        "primary-container": "#0052cc",
+                        "on-surface-variant": "#434654",
+                        "surface-variant": "#d8e2ff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#ccdaff",
+                        "secondary": "#006492",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "primary": "#003d9b",
+                        "inverse-surface": "#1d3054",
+                        "tertiary": "#004a54",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#00daf3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "touch-target-min": "48px",
+                        "gutter": "16px",
+                        "container-margin-desktop": "32px",
+                        "kiosk-touch-target": "64px",
+                        "container-margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-0 md:pl-64">
+<!-- Top App Bar (Mobile & Desktop) -->
+<header class="flex justify-between items-center w-full px-container-margin-desktop h-16 bg-surface border-b-2 border-outline-variant shadow-sm sticky top-0 z-40 md:hidden">
+<div class="flex items-center gap-4">
+<button aria-label="Go back" class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all" onclick="window.location.href='/Residents/02-Lich-su/index.html'">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<span class="text-headline-md font-headline-md font-bold text-primary">Chi tiết đơn hàng</span>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col h-screen w-64 border-r-2 border-outline-variant bg-surface-container shadow-none z-50">
+<div class="p-6 border-b-2 border-outline-variant bg-surface-container-low">
+<h1 class="text-headline-md font-headline-md font-extrabold text-primary mb-1">Kinetic Admin</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Management Portal</p>
+</div>
+<div class="flex-1 overflow-y-auto py-4">
+<ul class="flex flex-col gap-1 px-3">
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">business</span>
+<span class="text-label-md font-label-md">Building</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-label-md font-label-md">Locker Map</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-label-md font-label-md">Residents</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-bold hover:bg-surface-container-highest transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="text-label-md font-label-md">Logs</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="text-label-md font-label-md">Overdue/Fees</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="p-4 border-t-2 border-outline-variant">
+<div class="flex items-center gap-3 px-4 py-2">
+<img alt="Admin User Profile" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNUbbbR3NJoiYl5x6ZJDwvqkniecr0VzkM5e_t11a2OHlC9RH6VgdxqkxjBLmitg97N4BonbEkibZlMGxmRIugCM2Hn1rSbW0dGmdUCF328og0oDPqzUQSd5I7aNAJdlQZX02yfW7uatUGdnXfwt-LAx46S1TScx4de9pnaaDywraRcNx5hqvm0MGUG62yp2iNtLtYu2U_VnKHF7I2zf4wjLbgbMTFZMH8yRHlPNoDa3bmLfEFB_jqBtadk0GQ8WtPikU4eO6vyaI">
+<div class="flex flex-col">
+<span class="text-label-md font-label-md font-bold text-on-surface">Admin User</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Building Manager</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="max-w-5xl mx-auto p-gutter md:p-container-margin-desktop space-y-6">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<h1 class="text-headline-lg font-headline-lg text-on-surface">Đơn hàng #PKG-9021-VN</h1>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                    Hoàn tất vào: 14 tháng 5, 2024 lúc 18:45
+                </p>
+</div>
+<div class="flex gap-3">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-primary text-label-sm font-label-sm flex items-center gap-1 border border-primary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Đ# lấy
+                    </span></div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Locker Info Card (Col 8) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm flex flex-col gap-6">
+<h2 class="text-headline-md font-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+                    Thông tin Lưu trữ
+                </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="space-y-1">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Vị trí Tủ khóa</p>
+<p class="text-body-lg font-body-lg font-semibold text-on-surface">Sảnh A - Khu vực Phía Bắc</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Tủ số: B42 (Kích thước: Lớn)</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Mã vận đơn</p>
+<p class="text-body-lg font-body-lg font-mono text-on-surface tracking-tight">VNPOST-88392011</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Đơn vị vận chuyển: VNPost Express</p>
+</div>
+</div>
+<div class="h-px bg-outline-variant w-full my-2"></div>
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface font-semibold">Phí lưu kho (Cuối cùng)</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Lưu kho quá hạn 12 giờ</p>
+</div>
+</div>
+<span class="font-headline-md text-on-surface font-bold text-headline-sm whitespace-nowrap">25,000 ₫</span>
+</div>
+</div>
+<!-- Recipient Card (Col 4) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm flex flex-col gap-4">
+<h2 class="text-headline-md font-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">person</span>
+                    Người nhận
+                </h2>
+<div class="flex items-center gap-4 mt-2">
+<img alt="Avatar" class="w-14 h-14 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBVpWT70PZQByqcvElR2v9HcuWEzayzciwpTZTO7a40YsSiwy--Q7E1W_gTDbZVI0jrfVdCzqzZw0nOQkc5--4kIBbsNZdXiVWfStn7l2Xf37CwB7xJk6EiOPNx5nocK_8sidXUawUnWbjITaOOCCcO9XYc1jwlkdL856opnQNCX-XdsVKLzqJbz1oTbiVjohVIL_J9-06eSgjJirTLsXymt4q4I7E8qKLSJ0ZyT5Pjz_-Emb9GzHo1_eNGwm7zt24ObjR7PwCask">
+<div>
+<p class="text-body-lg font-body-lg font-semibold text-on-surface">Nguyễn Văn A</p>
+<p class="text-body-md font-body-md text-on-surface-variant">Căn hộ 1204</p>
+</div>
+</div>
+<div class="space-y-3 mt-4">
+<div class="flex items-center gap-3 text-body-md font-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">call</span>
+                        +84 90 123 4567
+                    </div>
+<div class="flex items-center gap-3 text-body-md font-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">pin</span>
+                        Đã xác thực bằng mã PIN
+                    </div>
+</div>
+</div>
+<!-- Video Verification Section (Col 12) -->
+<div class="md:col-span-12 bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<h2 class="text-headline-md font-headline-md text-on-surface flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-tertiary">videocam</span>
+                    Xác thực Camera An ninh
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Drop-off Video Placeholder -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Video Giao hàng (Drop-off)</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">14/05/2024 - 08:30</span>
+</div>
+<div class="relative w-full aspect-video bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant flex items-center justify-center group cursor-pointer">
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors z-10"></div>
+<img alt="Video Giao hàng" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply" data-alt="A modern, high-definition security camera frame showing a delivery driver in a neat uniform placing a medium-sized cardboard package into an automated blue metal locker system. The lighting is bright and clean, typical of a well-maintained corporate or high-end residential lobby. The style is objective and secure, emphasizing clear visibility and modern logistics infrastructure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7sIYxWjhopEafG1Gg5i540i7Jrv31nHjv5zSW8wydhaQtRkSSWhz_h-zlsizzYWK2fwVjUvWDEVx7f6PTg43PAmQAthvakTx74IsyqK0GJUU0AZC9b7qRccjzrt2wBnM0sojRK9VNRKbA2GTZhDBK8CQb0qSSHMvxDJPETDlSNOI93EADq9I7flAmbzWY9SFCUdYqu0LkWbSontrOq1WhThCb1lIbKnruy5aYqjVaqfWqFjsJ73x7nqQIho8dK4KapWcS6W39zNM">
+<div class="z-20 w-16 h-16 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-primary shadow-lg transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Pickup Video Placeholder -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Video Nhận hàng (Pickup)</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">14/05/2024 - 18:45</span>
+</div>
+<div class="relative w-full aspect-video bg-surface-container-high rounded-lg overflow-hidden border border-outline-variant flex items-center justify-center group cursor-pointer">
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors z-10"></div>
+<img alt="Video Nhận hàng" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply" data-alt="A clear security camera perspective of a casual resident retrieving a package from a modern blue automated locker system in a bright lobby. The resident is interacting with a sleek digital kiosk screen next to an open locker door. The scene is evenly lit with cool-toned LED lighting, reflecting a safe, efficient, and technologically advanced living environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoi3MrOssZbMWHyMDq0gUYDkEyDbqFibmRpxXrDFr2fhENIsgh6VcwptNom92w7o9N8ZcUUj6_T-v2PLoWHzuL6c9KVEpATbr5ds5BnN0eExiH92e7yyoE0f9UH_nQyNq2yrKMQgOPovW1HrGGrXkichnCdIhC34ymz1LSbN0rGIFF5_3SHjF-9aBblbBGF-fgmcVkZdjGaDy2pHfsPFnXO8BIekczztb4cB2bCvLneUzNAuH_i3d_tZpE0GXFizbbEXq3-BloqMQ">
+<div class="z-20 w-16 h-16 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-primary shadow-lg transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant px-2 h-20 flex items-center justify-around z-50 rounded-t-2xl shadow-[0_-8px_24px_rgba(0,0,0,0.1)]"><a class="flex flex-col items-center justify-center gap-1 w-[25%] py-2 text-on-surface-variant" href="/Residents/01-Trang-chu/index.html"><span class="material-symbols-outlined text-[24px]">dashboard</span><span class="text-label-sm font-label-sm">Trang chủ</span></a><a class="flex flex-col items-center justify-center gap-1 w-[25%] py-2 text-primary font-bold" href="/Residents/02-Lich-su/index.html"><span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">history</span><span class="text-label-sm font-label-sm">Lịch sử</span></a><a class="flex flex-col items-center justify-center gap-1 w-[25%] py-2 text-on-surface-variant" href="/Residents/04-Tu-do/index.html"><span class="material-symbols-outlined text-[24px]">inventory_2</span><span class="text-label-sm font-label-sm">Tủ đồ</span></a><a class="flex flex-col items-center justify-center gap-1 w-[25%] py-2 text-on-surface-variant" href="/Residents/06-Cai-dat/index.html"><span class="material-symbols-outlined text-[24px]">settings</span><span class="text-label-sm font-label-sm">Cài đặt</span></a></nav>
+
+
+
+
+
+</body></html>

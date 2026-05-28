@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Chi tiết Tủ đồ - Sơ đồ trực quan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "surface": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#003d9b",
+                        "inverse-primary": "#b2c5ff",
+                        "on-tertiary-fixed": "#131b2e",
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-fixed": "#001848",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#54647a",
+                        "tertiary": "#3b4358",
+                        "secondary": "#505f76",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "outline": "#737685",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d0e1fb",
+                        "primary-fixed": "#dae2ff",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-primary-container": "#c4d2ff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#0c56d0",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d6",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-background": "#191c1e",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#cbd2ec",
+                        "on-surface": "#191c1e",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#535a70",
+                        "primary-container": "#0052cc",
+                        "on-surface-variant": "#434654",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base-unit": "8px",
+                        "container-padding": "32px",
+                        "topbar-height": "64px",
+                        "sidebar-width": "260px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "mono-data": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-[260px] bg-tertiary dark:bg-on-tertiary-fixed text-on-tertiary z-20 flex flex-col py-base-unit transition-all duration-200 ease-in-out">
+<div class="px-gutter pb-container-padding pt-base-unit">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">domain</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-tertiary">Kinetic Admin</h1>
+<p class="font-body-sm text-body-sm text-tertiary-fixed-dim">Infrastructure Management</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto mt-4 px-3 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors" href="/Admin/01-Quan-ly-toa-nha/index.html">
+<span class="material-symbols-outlined" data-icon="apartment">apartment</span>
+<span class="font-body-md text-body-md">Building</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT border-l-4 border-primary bg-surface-container-highest/10 text-on-tertiary font-bold hover:bg-on-tertiary-fixed-variant transition-colors" href="/Admin/02-Quan-ly-tu-do/index.html">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-body-md text-body-md">Locker Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors" href="/Admin/04-Quan-ly-cu-dan/index.html">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">Residents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors" href="/Admin/06-Quan-ly-giao-nhan/index.html">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-md text-body-md">Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors" href="/Admin/05-Quan-ly-luu-tu/index.html">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md">Overdue/Fees</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors mt-auto" href="/Admin/07-Cai-dat-he-thong/index.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+<div class="px-gutter pt-container-padding">
+<button class="w-full py-2 px-4 bg-tertiary-container text-on-tertiary-container rounded-DEFAULT font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-on-tertiary-fixed-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">monitor_heart</span>
+                System Status
+            </button>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 h-[64px] left-[260px] bg-surface-container-lowest dark:bg-surface-dim flex justify-between items-center px-container-padding w-[calc(100%-260px)] z-10 border-b border-outline-variant">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md focus-within:ring-1 focus-within:ring-primary rounded-DEFAULT bg-surface-container-low transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-transparent border-none py-2 pl-10 pr-4 text-body-md font-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:outline-none" placeholder="Tìm kiếm..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden ml-2 border border-outline-variant">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a male administrator wearing a crisp white shirt, isolated against a soft grey background. The lighting is bright and even, casting subtle shadows to define facial features while maintaining a clean, modern corporate aesthetic. The image is high-resolution, sharp, and tightly cropped to emphasize the subject's approachable yet authoritative expression, suitable for an enterprise dashboard avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYxlJNGbq01YmwBUuU2DilJWP9VahIIdVjWy4urjAcwSuXK7vU-mxxkxfVI8YhNtzONLhSeSojKULs6-qv1Dm-c3LYS84Y8rwI66AnsnYnKbyg4lTRg2VYsDsy35nq2tunfwVt1hqizIhgsIxJwA7xWcLp0YyevXekSp2UHmpQmE1HVcT1yOcbRPl3AaxAKF87jKuioKU2cS_bi6ZDZzJqKEkui4r-1PDt5S9nhU6MJ0xaRnOzPISV6lDTPWU_O1OeYESgY4JES-4">
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] mt-[64px] p-container-padding h-[calc(100vh-64px)] overflow-y-auto">
+<div class="max-w-7xl mx-auto space-y-gutter">
+<!-- Breadcrumb & Header -->
+<div>
+<div class="flex items-center gap-2 text-label-md font-label-md text-secondary mb-2">
+<a class="hover:text-primary transition-colors" href="/Admin/02-Quan-ly-tu-do/index.html">Sơ đồ Tủ đồ</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Tủ đồ A12</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-display-lg font-display-lg text-on-surface">Tủ đồ A12</h2>
+<p class="text-body-lg font-body-lg text-secondary mt-1">Khu vực Sảnh chính - Tòa nhà Central Park</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-outline-variant rounded-DEFAULT text-body-md font-body-md text-secondary hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+                            Xuất báo cáo
+                        </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary rounded-DEFAULT text-body-md font-body-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">lock_reset</span>
+                            Khởi động lại Tủ
+                        </button>
+</div>
+</div>
+</div>
+<!-- Bento Info Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Vị trí &amp; Thông tin</h3>
+</div>
+<ul class="space-y-3 text-body-md font-body-md">
+<li class="flex justify-between"><span class="text-secondary">Tòa nhà:</span> <span class="font-semibold text-on-surface">Central Park A</span></li>
+<li class="flex justify-between"><span class="text-secondary">Tầng:</span> <span class="font-semibold text-on-surface">G (Sảnh chính)</span></li>
+<li class="flex justify-between"><span class="text-secondary">Mã phần cứng:</span> <span class="font-mono-data text-mono-data bg-surface-container px-2 py-0.5 rounded">HW-A12-990</span></li>
+</ul>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">grid_view</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Công suất</h3>
+</div>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-display-lg font-display-lg text-on-surface">24</span>
+<span class="text-body-md font-body-md text-secondary mb-2">/ 30 ngăn</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 mt-2">
+<div class="bg-primary h-2 rounded-full" style="width: 80%"></div>
+</div>
+<p class="text-body-sm font-body-sm text-secondary mt-2">Tỷ lệ lấp đầy 80%</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface">Tình trạng Kỹ thuật</h3>
+</div>
+<ul class="space-y-3 text-body-md font-body-md">
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+<span class="text-secondary">Kết nối Mạng:</span> <span class="font-semibold text-on-surface ml-auto">Trực tuyến</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+<span class="text-secondary">Nguồn điện:</span> <span class="font-semibold text-on-surface ml-auto">Ổn định</span>
+</li>
+<li class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-secondary">Cảnh báo:</span> <span class="font-semibold text-error ml-auto">1 ngăn bị kẹt</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Visualization Canvas -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-sm flex flex-col h-[500px]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-headline-md font-headline-md text-on-surface">Sơ đồ Ngăn tủ</h3>
+<!-- Legend -->
+<div class="flex gap-4 text-label-md font-label-md">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 border-2 border-[#10b981] bg-surface-container-lowest rounded-sm"></div>
+<span class="text-secondary">Trống</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 bg-[#f59e0b] border border-[#d97706] rounded-sm"></div>
+<span class="text-secondary">Đang sử dụng</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 bg-error border border-[#991b1b] rounded-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-error">error</span>
+</div>
+<span class="text-secondary">Lỗi / Kẹt</span>
+</div>
+</div>
+</div>
+<!-- Grid -->
+<div class="flex-1 bg-surface rounded-DEFAULT border border-outline-variant p-6 overflow-auto">
+<!-- Configurable grid layout representing the physical locker bank -->
+<div class="grid grid-cols-5 gap-3 h-full max-w-4xl mx-auto">
+<!-- Row 1: Large lockers (Span 2 rows) -->
+<div class="row-span-2 relative group cursor-pointer border-2 border-[#10b981] bg-surface-container-lowest rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-on-surface absolute top-2 left-2">01</span>
+<span class="material-symbols-outlined text-[#10b981] opacity-50 text-4xl">inventory_2</span>
+</div>
+<div class="row-span-2 relative group cursor-pointer bg-[#fef3c7] border border-[#f59e0b] rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-[#b45309] absolute top-2 left-2">02</span>
+<span class="material-symbols-outlined text-[#f59e0b] text-4xl">lock</span>
+<!-- Tooltip -->
+<div class="absolute inset-0 bg-[#f59e0b]/90 text-on-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center p-2 text-center rounded-md z-10">
+<span class="font-label-md text-label-md">Nguyễn Văn A</span>
+<span class="font-body-sm text-body-sm mt-1">Đã lưu: 12 giờ</span>
+</div>
+</div>
+<div class="row-span-2 relative group cursor-pointer bg-[#fef3c7] border border-[#f59e0b] rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-[#b45309] absolute top-2 left-2">03</span>
+<span class="material-symbols-outlined text-[#f59e0b] text-4xl">lock</span>
+</div>
+<div class="row-span-2 relative group cursor-pointer border-2 border-[#10b981] bg-surface-container-lowest rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-on-surface absolute top-2 left-2">04</span>
+</div>
+<div class="row-span-2 relative group cursor-pointer border-2 border-[#10b981] bg-surface-container-lowest rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-on-surface absolute top-2 left-2">05</span>
+</div>
+<!-- Row 3 & 4: Medium Lockers -->
+<div class="relative group cursor-pointer bg-[#fef3c7] border border-[#f59e0b] rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-[#b45309] absolute top-2 left-2">06</span>
+</div>
+<div class="relative group cursor-pointer border-2 border-[#10b981] bg-surface-container-lowest rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-on-surface absolute top-2 left-2">07</span>
+</div>
+<!-- Error Locker -->
+<div class="relative group cursor-pointer bg-error-container border-2 border-error rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md animate-pulse">
+<span class="font-mono-data text-mono-data font-bold text-error absolute top-2 left-2">08</span>
+<span class="material-symbols-outlined text-error text-3xl">warning</span>
+<div class="absolute inset-0 bg-error/90 text-on-error opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center p-2 text-center rounded-md z-10">
+<span class="font-label-md text-label-md">Kẹt chốt cửa</span>
+<button class="mt-2 text-[10px] underline">Chi tiết lỗi</button>
+</div>
+</div>
+<div class="relative group cursor-pointer bg-[#fef3c7] border border-[#f59e0b] rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-[#b45309] absolute top-2 left-2">09</span>
+</div>
+<div class="relative group cursor-pointer border-2 border-[#10b981] bg-surface-container-lowest rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-on-surface absolute top-2 left-2">10</span>
+</div>
+<div class="relative group cursor-pointer border-2 border-[#10b981] bg-surface-container-lowest rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-on-surface absolute top-2 left-2">11</span>
+</div>
+<div class="relative group cursor-pointer bg-[#fef3c7] border border-[#f59e0b] rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-[#b45309] absolute top-2 left-2">12</span>
+</div>
+<div class="relative group cursor-pointer bg-[#fef3c7] border border-[#f59e0b] rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-[#b45309] absolute top-2 left-2">13</span>
+</div>
+<div class="relative group cursor-pointer bg-[#fef3c7] border border-[#f59e0b] rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-[#b45309] absolute top-2 left-2">14</span>
+</div>
+<div class="relative group cursor-pointer border-2 border-[#10b981] bg-surface-container-lowest rounded-md flex flex-col items-center justify-center transition-all hover:shadow-md">
+<span class="font-mono-data text-mono-data font-bold text-on-surface absolute top-2 left-2">15</span>
+</div>
+<!-- Add more cells as needed for the visual, keeping it to 15 for demonstration of grid -->
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

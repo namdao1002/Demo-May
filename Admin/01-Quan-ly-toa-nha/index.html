@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Quản lý Tòa nhà - Kinetic Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "surface": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#003d9b",
+                        "inverse-primary": "#b2c5ff",
+                        "on-tertiary-fixed": "#131b2e",
+                        "secondary-fixed": "#d3e4fe",
+                        "background": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-fixed": "#001848",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#54647a",
+                        "tertiary": "#3b4358",
+                        "secondary": "#505f76",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "outline": "#737685",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d0e1fb",
+                        "primary-fixed": "#dae2ff",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-primary-container": "#c4d2ff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#0c56d0",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d6",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-background": "#191c1e",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#cbd2ec",
+                        "on-surface": "#191c1e",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#535a70",
+                        "primary-container": "#0052cc",
+                        "on-surface-variant": "#434654",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base-unit": "8px",
+                        "container-padding": "32px",
+                        "topbar-height": "64px",
+                        "sidebar-width": "260px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "mono-data": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F8FAFC; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased bg-background flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-[260px] bg-tertiary dark:bg-on-tertiary-fixed text-primary font-body-md text-body-md bg-tertiary dark:bg-on-tertiary-fixed flex flex-col h-full py-base-unit z-20">
+<div class="px-gutter mb-8 mt-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">domain</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-tertiary">Kinetic Admin</h1>
+<p class="font-label-md text-label-md text-tertiary-fixed-dim">Infrastructure Management</p>
+</div>
+</div>
+</div>
+<ul class="flex-1 px-2 space-y-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT border-l-4 border-primary bg-surface-container-highest/10 text-on-tertiary font-bold transition-all duration-200 ease-in-out" href="/Admin/01-Quan-ly-toa-nha/index.html">
+<span class="material-symbols-outlined">apartment</span>
+                    Building
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors border-l-4 border-transparent hover:bg-on-tertiary-fixed-variant transition-all duration-200 ease-in-out" href="/Admin/02-Quan-ly-tu-do/index.html">
+<span class="material-symbols-outlined">map</span>
+                    Locker Map
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors border-l-4 border-transparent hover:bg-on-tertiary-fixed-variant transition-all duration-200 ease-in-out" href="/Admin/04-Quan-ly-cu-dan/index.html">
+<span class="material-symbols-outlined">groups</span>
+                    Residents
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors border-l-4 border-transparent hover:bg-on-tertiary-fixed-variant transition-all duration-200 ease-in-out" href="/Admin/06-Quan-ly-giao-nhan/index.html">
+<span class="material-symbols-outlined">history</span>
+                    Logs
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors border-l-4 border-transparent hover:bg-on-tertiary-fixed-variant transition-all duration-200 ease-in-out" href="/Admin/05-Quan-ly-luu-tu/index.html">
+<span class="material-symbols-outlined">payments</span>
+                    Overdue/Fees
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-tertiary-fixed-dim hover:text-on-tertiary hover:bg-surface-container-highest/5 transition-colors border-l-4 border-transparent hover:bg-on-tertiary-fixed-variant transition-all duration-200 ease-in-out" href="/Admin/07-Cai-dat-he-thong/index.html">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<div class="px-4 mt-auto">
+<button class="w-full flex items-center justify-center gap-2 py-2 px-4 rounded border border-tertiary-fixed-dim text-tertiary-fixed-dim hover:text-on-tertiary hover:border-on-tertiary transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">monitor_heart</span>
+                System Status
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-[260px] flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 h-[64px] left-[260px] bg-surface-container-lowest dark:bg-surface-dim text-primary font-label-md text-label-md border-b border-outline-variant flex justify-between items-center px-container-padding h-topbar-height w-full z-10">
+<div class="flex items-center gap-4">
+<div class="relative group focus-within:ring-1 focus-within:ring-primary rounded">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded focus:ring-0 w-64 text-on-surface placeholder-outline font-body-sm text-body-sm transition-all focus:w-80 outline-none" placeholder="Tìm kiếm tòa nhà..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-secondary hover:text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-secondary hover:text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden md:block">
+<p class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Admin User</p>
+<p class="font-body-sm text-body-sm text-secondary">Quản trị viên</p>
+</div>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A small, circular avatar image showing the initials 'AU' in white against a deep blue background. The style is modern, minimalist, and corporate, fitting a high-end dashboard interface. The lighting is flat and uniform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbqB9hVGFK9qrGuePW8rI-GfNRc1Fh4FOq0ym7sYrICytgMXXBj5aefNcCDCwAP0Y1JYRo3jBaGA7jS7AqHtxyuht8fy3XolZoVlk8NHVUleBTz0tNjyicENdbQxNId3ASrrlkOjG3aHTlEy8E7MrKD6tfGKH6N1ffWXSDAU2TCtTNpV7vIUsyumWRUywQVf12BxMiTv1Etp6-Lxay4BynEPfp3ffwV7wY6Wb6LjMJoiPhVlHfu3ZkhPAHqQPibceNzwazczA2fq8">
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 mt-[64px] p-container-padding">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Quản lý Tòa nhà</h2>
+<p class="font-body-lg text-body-lg text-secondary">Danh sách các tòa nhà trong hệ thống quản lý hạ tầng.</p>
+</div>
+<button class="bg-primary-container hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md px-6 py-3 rounded flex items-center gap-2 transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                    Thêm Tòa nhà
+                </button>
+</div>
+<!-- Dashboard Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Main Data Table Card -->
+<div class="col-span-12 bg-surface-container-lowest border border-surface-variant rounded-lg overflow-hidden shadow-sm flex flex-col">
+<div class="px-6 py-4 border-b border-surface-variant flex justify-between items-center bg-surface">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Danh sách Tòa nhà</h3>
+<div class="flex gap-2">
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors"><span class="material-symbols-outlined">filter_list</span></button>
+<button class="p-1.5 text-secondary hover:text-primary hover:bg-surface-container-low rounded transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-surface-variant">
+<th class="py-3 px-6 font-label-md text-label-md text-secondary uppercase tracking-wider sticky left-0 bg-surface-container">ID</th>
+<th class="py-3 px-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Tên Tòa nhà</th>
+<th class="py-3 px-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Địa chỉ</th>
+<th class="py-3 px-6 font-label-md text-label-md text-secondary uppercase tracking-wider text-right">Số Căn hộ</th>
+<th class="py-3 px-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Tủ khóa Đã giao</th>
+<th class="py-3 px-6 font-label-md text-label-md text-secondary uppercase tracking-wider">Trạng thái</th>
+<th class="py-3 px-6 font-label-md text-label-md text-secondary uppercase tracking-wider text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<!-- Row 1 -->
+<tr class="border-b border-surface-variant hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-6 font-mono-data text-mono-data text-secondary sticky left-0 bg-surface-container-lowest group-hover:bg-surface-bright">BLD-001</td>
+<td class="py-3 px-6 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">apartment</span>
+</div>
+                                        Tower A
+                                    </td>
+<td class="py-3 px-6 text-on-surface-variant">123 Nguyen Van Linh, Q.7</td>
+<td class="py-3 px-6 text-right font-mono-data text-mono-data text-on-surface">120</td>
+<td class="py-3 px-6">
+<div class="flex flex-wrap gap-1">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker A1</span>
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker A2</span>
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker A3</span>
+<span class="inline-block px-2 py-1 bg-surface-container-low text-secondary text-xs rounded border border-dashed border-outline-variant font-mono-data">+15</span>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Hoạt động
+                                        </span>
+</td>
+<td class="py-3 px-6 text-right">
+<button class="text-secondary hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-surface-variant hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-6 font-mono-data text-mono-data text-secondary sticky left-0 bg-surface-container-lowest group-hover:bg-surface-bright">BLD-002</td>
+<td class="py-3 px-6 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">apartment</span>
+</div>
+                                        Tower B
+                                    </td>
+<td class="py-3 px-6 text-on-surface-variant">125 Nguyen Van Linh, Q.7</td>
+<td class="py-3 px-6 text-right font-mono-data text-mono-data text-on-surface">150</td>
+<td class="py-3 px-6">
+<div class="flex flex-wrap gap-1">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker B1</span>
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker B2</span>
+<span class="inline-block px-2 py-1 bg-surface-container-low text-secondary text-xs rounded border border-dashed border-outline-variant font-mono-data">+22</span>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Hoạt động
+                                        </span>
+</td>
+<td class="py-3 px-6 text-right">
+<button class="text-secondary hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-surface-variant hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-6 font-mono-data text-mono-data text-secondary sticky left-0 bg-surface-container-lowest group-hover:bg-surface-bright">BLD-003</td>
+<td class="py-3 px-6 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">domain</span>
+</div>
+                                        Landmark 1
+                                    </td>
+<td class="py-3 px-6 text-on-surface-variant">208 Nguyen Huu Canh, Binh Thanh</td>
+<td class="py-3 px-6 text-right font-mono-data text-mono-data text-on-surface">250</td>
+<td class="py-3 px-6">
+<div class="flex flex-wrap gap-1">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker L1</span>
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker L2</span>
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface text-xs rounded border border-outline-variant font-mono-data">Locker L3</span>
+<span class="inline-block px-2 py-1 bg-surface-container-low text-secondary text-xs rounded border border-dashed border-outline-variant font-mono-data">+45</span>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                            Bảo trì
+                                        </span>
+</td>
+<td class="py-3 px-6 text-right">
+<button class="text-secondary hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="py-3 px-6 font-mono-data text-mono-data text-secondary sticky left-0 bg-surface-container-lowest group-hover:bg-surface-bright">BLD-004</td>
+<td class="py-3 px-6 font-semibold text-on-surface flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">home_work</span>
+</div>
+                                        Riverside A
+                                    </td>
+<td class="py-3 px-6 text-on-surface-variant">15 Ton Duc Thang, Q.1</td>
+<td class="py-3 px-6 text-right font-mono-data text-mono-data text-on-surface">85</td>
+<td class="py-3 px-6">
+<div class="flex flex-wrap gap-1">
+<span class="text-xs text-secondary italic">Chưa cấu hình</span>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-surface-variant text-on-surface-variant border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                                            Đang xây dựng
+                                        </span>
+</td>
+<td class="py-3 px-6 text-right">
+<button class="text-secondary hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-surface-variant bg-surface flex items-center justify-between mt-auto">
+<span class="font-body-sm text-body-sm text-secondary">Hiển thị 1-4 trong 12 tòa nhà</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-surface-variant rounded bg-surface-container-lowest text-secondary disabled:opacity-50 font-body-sm text-body-sm" disabled="">Trước</button>
+<button class="px-3 py-1 border border-surface-variant rounded bg-surface-container-lowest text-secondary hover:bg-surface-container-low font-body-sm text-body-sm">Tiếp</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
+
+
