@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kiosk - Quét Mã Vận Đơn</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#d8e2ff",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#1d3054",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#33e6ff",
+                        "primary": "#003d9b",
+                        "on-tertiary-fixed": "#001f24",
+                        "on-secondary-fixed": "#001e2f",
+                        "surface-container-highest": "#d8e2ff",
+                        "surface-bright": "#faf9ff",
+                        "secondary": "#006492",
+                        "surface-container-high": "#e1e8ff",
+                        "on-surface-variant": "#434654",
+                        "tertiary-container": "#006470",
+                        "secondary-container": "#0cb3ff",
+                        "on-secondary-fixed-variant": "#004b6f",
+                        "on-surface": "#051a3e",
+                        "tertiary-fixed": "#9cf0ff",
+                        "surface": "#faf9ff",
+                        "outline-variant": "#c3c6d6",
+                        "primary-fixed": "#dae2ff",
+                        "primary-container": "#0052cc",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#e9edff",
+                        "tertiary-fixed-dim": "#00daf3",
+                        "surface-container-low": "#f1f3ff",
+                        "on-primary-fixed": "#001848",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#c9e6ff",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#8bceff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#051a3e",
+                        "on-tertiary-fixed-variant": "#004f58",
+                        "tertiary": "#004a54",
+                        "surface-tint": "#0c56d0",
+                        "on-secondary-container": "#004261",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#c4d2ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "outline": "#737685",
+                        "background": "#faf9ff",
+                        "inverse-primary": "#b2c5ff",
+                        "surface-dim": "#ccdaff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin-desktop": "32px",
+                        "kiosk-touch-target": "64px",
+                        "gutter": "16px",
+                        "container-margin-mobile": "16px",
+                        "unit": "8px",
+                        "touch-target-min": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;
+        }
+
+        /* Scanning Laser Animation */
+        @keyframes scan-laser {
+            0% { top: 10%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 90%; opacity: 0; }
+        }
+        .animate-scan-laser {
+            animation: scan-laser 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* Subtle pulse for the scan frame to draw attention */
+        @keyframes frame-pulse {
+            0%, 100% { border-color: rgba(0, 82, 204, 0.4); }
+            50% { border-color: rgba(0, 82, 204, 0.8); box-shadow: 0 0 20px rgba(0, 82, 204, 0.2) inset; }
+        }
+        .animate-frame-pulse {
+            animation: frame-pulse 3s ease-in-out infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(768px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-on-background text-inverse-on-surface h-screen w-screen overflow-hidden flex flex-col font-body-md select-none relative">
+<!-- Header / Context Area -->
+<header class="w-full flex justify-between items-center px-container-margin-desktop py-gutter z-20 absolute top-0 left-0">
+<button class="flex items-center gap-unit px-8 py-5 rounded-full bg-surface-container/10 hover:bg-surface-container/20 active:scale-95 transition-all backdrop-blur-md border border-outline-variant/20 min-h-[80px]" id="btn-back">
+<span class="material-symbols-outlined text-[40px]">arrow_back</span>
+<span class="font-headline-lg text-headline-lg tracking-wide">QUAY LẠI</span>
+</button>
+<div class="flex items-center gap-unit text-surface-variant/70 bg-black/20 px-6 py-4 rounded-full backdrop-blur-sm">
+<span class="material-symbols-outlined text-[32px]">help</span>
+<span class="font-headline-md text-headline-md">Cần hỗ trợ?</span>
+</div>
+</header>
+<!-- Main Scanning Canvas for Landscape Tablet -->
+<main class="flex-1 flex flex-row items-stretch justify-center px-container-margin-desktop gap-12 relative z-10 pt-[140px] pb-12 h-full max-w-[1440px] mx-auto w-full">
+<!-- Left Panel: Info & Fallback Action -->
+<div class="w-2/5 flex flex-col justify-between items-start">
+<div class="text-left w-full">
+<h1 class="font-display-lg text-[64px] leading-[72px] font-bold text-surface-bright mb-6 drop-shadow-lg">
+                Quét mã vận đơn
+            </h1>
+<p class="font-headline-lg text-headline-lg text-surface-variant/90 font-medium">
+                Vui lòng đưa mã vạch của kiện hàng vào khu vực khung hình
+            </p>
+</div>
+<!-- Manual Entry Fallback Button -->
+<button class="w-full min-h-[120px] px-10 py-8 bg-surface text-on-surface rounded-[40px] flex items-center justify-center gap-6 hover:bg-surface-container-low active:scale-95 transition-all duration-200 shadow-2xl border-4 border-primary/20 group" id="btn-manual-entry">
+<span class="material-symbols-outlined text-[56px] text-primary group-hover:scale-110 transition-transform">keyboard</span>
+<span class="font-headline-lg text-[32px] leading-tight text-primary font-bold tracking-wide text-center uppercase">NHẬP TAY<br><span class="text-headline-md opacity-80">(NẾU LỖI CAMERA)</span></span>
+</button>
+</div>
+<!-- Right Panel: Scanning Viewport Container -->
+<div class="w-3/5 flex items-center justify-center relative">
+<div class="relative w-full h-full rounded-[48px] overflow-hidden bg-black shadow-2xl border-2 border-outline-variant/20 z-10 animate-frame-pulse cursor-pointer" id="scan-zone">
+<!-- Simulated Camera Feed Background -->
+<div class="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-luminosity filter blur-[1px]" data-alt="A close-up, first-person view from a digital kiosk camera focusing on a plain cardboard shipping box held by hands. The box has a prominent, clean white shipping label with a large, crisp barcode and tracking numbers. The lighting is focused and slightly cool, optimized for scanning. The background is a blurred, out-of-focus modern logistics warehouse environment with subtle blue and grey corporate tones, maintaining a high-tech, efficient aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsHMtgUX1MNbfjWk6lGSybQDzwvdm0K25RGM8g57RtCBwJsmlRUZbHxq370Birj2YMqk1DifD1sFsk0AdP3PJxMpWqqXKvMyRaev97gNE229GumWh1Q07vK4c6sVRp8s0l-X3YHdm7Nl2zi9Y1nq2xgx4TfHaWZgSvlPYDMnVOFRIQKCGd-x5Z0e7Xea3RkAw8rt9JQmtxoNJEZrFtV2zuxafPr2I5FfP7kN4_Mg4B_-pgGvWWH3uYX0RdzM_sO_vmGBnFc6HdoFU');">
+</div>
+<!-- Dark Overlay for better contrast outside the active zone -->
+<div class="absolute inset-0 bg-black/50 pointer-events-none"></div>
+<!-- Active Scan Area Clearout (Simulated with a central brighter zone) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 shadow-[0_0_0_9999px_rgba(0,0,0,0.6)] rounded-2xl pointer-events-none border-2 border-outline-variant/30 backdrop-blur-none">
+<!-- Reticle Corners -->
+<div class="absolute -top-1 -left-1 w-16 h-16 border-t-8 border-l-8 border-primary rounded-tl-2xl"></div>
+<div class="absolute -top-1 -right-1 w-16 h-16 border-t-8 border-r-8 border-primary rounded-tr-2xl"></div>
+<div class="absolute -bottom-1 -left-1 w-16 h-16 border-b-8 border-l-8 border-primary rounded-bl-2xl"></div>
+<div class="absolute -bottom-1 -right-1 w-16 h-16 border-b-8 border-r-8 border-primary rounded-br-2xl"></div>
+<!-- Scanning Laser Line -->
+<div class="absolute left-0 w-full h-[6px] bg-primary-container shadow-[0_0_20px_5px_rgba(0,82,204,0.8)] animate-scan-laser rounded-full z-20"></div>
+</div>
+<!-- Live Camera Indicator -->
+<div class="absolute top-8 right-8 flex items-center gap-3 bg-black/70 backdrop-blur-md px-6 py-3 rounded-full border border-outline-variant/30">
+<div class="w-4 h-4 rounded-full bg-error animate-pulse"></div>
+<span class="font-headline-md text-headline-md text-surface-bright tracking-wider" id="scan-status">CAMERA ĐANG HOẠT ĐỘNG</span>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full absolute bottom-0 left-0 z-20 px-container-margin-desktop py-8 flex justify-end">
+<button class="h-kiosk-touch-target min-h-[80px] px-14 rounded-xl bg-primary text-on-primary font-headline-lg text-headline-lg shadow-lg transition-all opacity-50 cursor-not-allowed" id="btn-continue">
+        TIẾP TỤC
+    </button>
+</footer>
+<!-- Ambient Background Lighting Effect -->
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-primary/15 rounded-full blur-[150px] pointer-events-none z-0"></div>
+<script>
+        const btnBack = document.getElementById('btn-back');
+        const btnManualEntry = document.getElementById('btn-manual-entry');
+        const scanZone = document.getElementById('scan-zone');
+        const scanStatus = document.getElementById('scan-status');
+        const btnContinue = document.getElementById('btn-continue');
+        const params = new URLSearchParams(window.location.search);
+
+        let shippingCode = '';
+
+        function updateContinueState() {
+            const isValid = shippingCode.length >= 6;
+            btnContinue.classList.toggle('opacity-50', !isValid);
+            btnContinue.classList.toggle('cursor-not-allowed', !isValid);
+            btnContinue.classList.toggle('animate-pulse', isValid);
+        }
+
+        btnBack.addEventListener('click', () => {
+            window.location.href = '/Locker/03-Don-hang/index.html';
+        });
+
+        btnManualEntry.addEventListener('click', () => {
+            const value = window.prompt('Nhập mã vận đơn (ít nhất 6 ký tự):', shippingCode);
+            if (!value) {
+                return;
+            }
+            const normalized = value.trim();
+            if (normalized.length < 6) {
+                alert('Mã vận đơn không hợp lệ.');
+                return;
+            }
+            shippingCode = normalized;
+            scanStatus.textContent = `Mã hợp lệ: ${shippingCode}`;
+            updateContinueState();
+        });
+
+        scanZone.addEventListener('click', () => {
+            shippingCode = `AWB${Date.now().toString().slice(-6)}`;
+            scanStatus.textContent = `Đã quét: ${shippingCode}`;
+            updateContinueState();
+        });
+
+        btnContinue.addEventListener('click', () => {
+            if (shippingCode.length < 6) {
+                alert('Vui lòng quét hoặc nhập mã vận đơn hợp lệ.');
+                return;
+            }
+
+            const room = params.get('room') || '';
+            const size = params.get('size') || '';
+            const nextParams = new URLSearchParams({
+                room,
+                size,
+                awb: shippingCode
+            });
+            window.location.href = `/Locker/05-Mo-o-tu/index.html?${nextParams.toString()}`;
+        });
+    </script>
+</body></html>

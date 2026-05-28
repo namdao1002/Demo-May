@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kinetic Infrastructure - Kiosk Nhận Hàng</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#e9edff",
+                        "on-tertiary-container": "#33e6ff",
+                        "surface-dim": "#ccdaff",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-fixed": "#001e2f",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#1d3054",
+                        "inverse-primary": "#b2c5ff",
+                        "surface-container-high": "#e1e8ff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "tertiary-container": "#006470",
+                        "surface-variant": "#d8e2ff",
+                        "secondary-fixed-dim": "#8bceff",
+                        "primary": "#003d9b",
+                        "tertiary": "#004a54",
+                        "secondary": "#006492",
+                        "tertiary-fixed-dim": "#00daf3",
+                        "error-container": "#ffdad6",
+                        "background": "#faf9ff",
+                        "on-error-container": "#93000a",
+                        "surface": "#faf9ff",
+                        "outline": "#737685",
+                        "on-tertiary-fixed-variant": "#004f58",
+                        "surface-tint": "#0c56d0",
+                        "surface-container-highest": "#d8e2ff",
+                        "secondary-fixed": "#c9e6ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "on-error": "#ffffff",
+                        "primary-container": "#0052cc",
+                        "on-secondary-fixed-variant": "#004b6f",
+                        "outline-variant": "#c3c6d6",
+                        "on-primary-container": "#c4d2ff",
+                        "on-surface": "#051a3e",
+                        "on-tertiary-fixed": "#001f24",
+                        "on-primary-fixed": "#001848",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary-container": "#0cb3ff",
+                        "tertiary-fixed": "#9cf0ff",
+                        "primary-fixed": "#dae2ff",
+                        "on-secondary-container": "#004261",
+                        "on-surface-variant": "#434654",
+                        "on-background": "#051a3e",
+                        "surface-bright": "#faf9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target-min": "48px",
+                        "kiosk-touch-target": "64px",
+                        "container-margin-mobile": "16px",
+                        "unit": "8px",
+                        "gutter": "16px",
+                        "container-margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F4F5F7;
+            user-select: none; /* Prevent text selection on Kiosk */
+            overflow: hidden; /* No scrolling */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 48;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Kiosk specific layout helpers */
+        .kiosk-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            height: calc(100vh - 120px); /* Leave room for header */
+            padding: 32px 64px;
+        }
+
+        .pin-input {
+            width: 72px;
+            height: 88px;
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            border: 2px solid #DFE1E6;
+            border-radius: 12px;
+            background-color: white;
+            color: #051a3e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+        .pin-input.active {
+            border-color: #0052cc;
+            box-shadow: 0 4px 16px rgba(0, 82, 204, 0.15);
+        }
+        .pin-input.filled {
+            border-color: #003d9b;
+            background-color: #f1f3ff;
+        }
+
+        .keypad-btn {
+            height: 96px;
+            border-radius: 16px;
+            background-color: white;
+            border: 1px solid #DFE1E6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 600;
+            color: #051a3e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: background-color 0.1s, transform 0.1s;
+        }
+        .keypad-btn:active {
+            background-color: #e9edff;
+            transform: scale(0.98);
+        }
+        .keypad-btn.action-btn {
+            background-color: #f1f3ff;
+            font-size: 24px;
+            color: #434654;
+        }
+        .keypad-btn.action-btn.delete {
+            color: #ba1a1a;
+            background-color: #ffdad6;
+            border-color: #ffdad6;
+        }
+
+        .qr-scanner-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            max-width: 460px;
+            margin: 0 auto;
+            border-radius: 24px;
+            background-color: #001848;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .qr-corner {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            border: 6px solid #33e6ff;
+            z-index: 10;
+        }
+        .qr-corner.tl { top: 32px; left: 32px; border-right: none; border-bottom: none; border-top-left-radius: 16px; }
+        .qr-corner.tr { top: 32px; right: 32px; border-left: none; border-bottom: none; border-top-right-radius: 16px; }
+        .qr-corner.bl { bottom: 32px; left: 32px; border-right: none; border-top: none; border-bottom-left-radius: 16px; }
+        .qr-corner.br { bottom: 32px; right: 32px; border-left: none; border-top: none; border-bottom-right-radius: 16px; }
+
+        .scan-line {
+            position: absolute;
+            top: 50%;
+            left: 32px;
+            right: 32px;
+            height: 2px;
+            background-color: #33e6ff;
+            box-shadow: 0 0 16px 4px rgba(51, 230, 255, 0.4);
+            animation: scan 2.5s infinite linear;
+            z-index: 10;
+        }
+
+        @keyframes scan {
+            0% { top: 32px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: calc(100% - 32px); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col font-body-md text-body-md text-on-surface">
+<!-- Header (Custom Top Navigation for Kiosk) -->
+<header class="h-24 w-full bg-surface shadow-sm border-b-2 border-outline-variant flex items-center justify-between px-8 z-50">
+<!-- Back Button -->
+<button class="flex items-center gap-3 px-6 h-16 rounded-xl bg-surface-container-low border border-outline-variant hover:bg-surface-container transition-colors shadow-sm" id="btn-back">
+<span class="material-symbols-outlined text-headline-lg text-primary">arrow_back</span>
+<span class="font-headline-md text-headline-md text-primary tracking-wide">QUAY LẠI</span>
+</button>
+<!-- Center Title -->
+<div class="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-4">
+<span class="material-symbols-outlined text-[40px] text-primary-container filled">package_2</span>
+<h1 class="font-display-lg text-display-lg text-on-surface uppercase tracking-tight">NHẬN HÀNG</h1>
+</div>
+<!-- Help Button -->
+<button class="flex items-center gap-3 px-6 h-16 rounded-xl bg-surface-container-lowest border border-outline-variant hover:bg-surface-container transition-colors shadow-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-headline-lg">help</span>
+<span class="font-headline-md text-headline-md">Trợ giúp</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 kiosk-grid bg-[#F4F5F7]">
+<!-- Left Column: PIN Entry -->
+<div class="bg-surface rounded-3xl p-8 flex flex-col shadow-sm border border-outline-variant relative overflow-hidden">
+<!-- decorative bg element -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container rounded-bl-full opacity-5 pointer-events-none"></div>
+<div class="text-center mb-8 relative z-10">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-2">Nhập mã PIN 6 số</h2>
+<p class="font-headline-md text-headline-md text-on-surface-variant">Được gửi qua SMS hoặc Email</p>
+</div>
+<!-- PIN Display Boxes -->
+<div class="flex justify-center gap-4 mb-6 relative z-10">
+<div class="pin-input active flex items-center justify-center"></div>
+<div class="pin-input flex items-center justify-center"></div>
+<div class="pin-input flex items-center justify-center"></div>
+<div class="pin-input flex items-center justify-center"></div>
+<div class="pin-input flex items-center justify-center"></div>
+<div class="pin-input flex items-center justify-center"></div>
+</div>
+<button class="w-full max-w-md h-20 rounded-xl bg-primary text-on-primary font-headline-md text-headline-md tracking-wide shadow-sm transition-all opacity-50 cursor-not-allowed mb-8 mx-auto" id="btn-confirm" disabled>
+                XÁC NHẬN
+            </button>
+<!-- Numeric Keypad -->
+<div class="grid grid-cols-3 gap-4 mt-auto relative z-10 mx-auto w-full max-w-md">
+<button class="keypad-btn">1</button>
+<button class="keypad-btn">2</button>
+<button class="keypad-btn">3</button>
+<button class="keypad-btn">4</button>
+<button class="keypad-btn">5</button>
+<button class="keypad-btn">6</button>
+<button class="keypad-btn">7</button>
+<button class="keypad-btn">8</button>
+<button class="keypad-btn">9</button>
+<button class="keypad-btn action-btn delete">XÓA</button>
+<button class="keypad-btn">0</button>
+<button class="keypad-btn action-btn">
+<span class="material-symbols-outlined" style="font-size: 32px;">backspace</span>
+</button>
+</div>
+</div>
+<!-- Right Column: QR Scanner -->
+<div class="bg-surface rounded-3xl p-8 flex flex-col shadow-sm border border-outline-variant relative items-center justify-center">
+<!-- decorative bg element -->
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary-container rounded-tr-full opacity-10 pointer-events-none"></div>
+<div class="text-center mb-10 relative z-10">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-2">Hoặc quét mã QR</h2>
+<p class="font-headline-md text-headline-md text-on-surface-variant">Đưa mã QR vào khung hình bên dưới</p>
+</div>
+<div class="qr-scanner-frame cursor-pointer" id="qr-frame">
+<!-- Scanner UI Elements -->
+<div class="qr-corner tl"></div>
+<div class="qr-corner tr"></div>
+<div class="qr-corner bl"></div>
+<div class="qr-corner br"></div>
+<div class="scan-line"></div>
+<!-- Simulated Camera Feed / Graphic -->
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<span class="material-symbols-outlined text-surface-container" style="font-size: 200px;">qr_code_scanner</span>
+</div>
+<!-- Instruction overlay in camera feed -->
+<div class="absolute bottom-8 left-0 right-0 text-center">
+<span class="bg-on-surface/80 text-on-primary px-6 py-3 rounded-full font-headline-md text-headline-md backdrop-blur-sm" id="qr-status">
+                        Đang quét...
+                    </span>
+</div>
+</div>
+<div class="mt-12 flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-headline-md">lightbulb</span>
+<span class="font-headline-md text-headline-md">Mã QR nằm trong ứng dụng Kinetic</span>
+</div>
+</div>
+</main>
+<script>
+        // Minimal script to demonstrate PIN interaction for prototype realism
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.pin-input');
+            const keys = document.querySelectorAll('.keypad-btn:not(.action-btn)');
+            const delBtn = document.querySelector('.keypad-btn.delete');
+            const backBtn = document.querySelector('.keypad-btn .material-symbols-outlined').parentElement;
+            const headerBackBtn = document.getElementById('btn-back');
+            const qrFrame = document.getElementById('qr-frame');
+            const qrStatus = document.getElementById('qr-status');
+            const confirmBtn = document.getElementById('btn-confirm');
+
+            let currentIndex = 0;
+
+            function updateUI() {
+                inputs.forEach((input, index) => {
+                    input.classList.remove('active');
+                    if (index === currentIndex && currentIndex < 6) {
+                        input.classList.add('active');
+                    }
+                });
+
+                const isPinComplete = currentIndex === 6;
+                confirmBtn.disabled = !isPinComplete;
+                confirmBtn.classList.toggle('opacity-50', !isPinComplete);
+                confirmBtn.classList.toggle('cursor-not-allowed', !isPinComplete);
+                confirmBtn.classList.toggle('animate-pulse', isPinComplete);
+            }
+
+            keys.forEach(key => {
+                key.addEventListener('click', () => {
+                    if (currentIndex < 6) {
+                        inputs[currentIndex].textContent = '•'; // Use bullet for security, or key.textContent for demo
+                        inputs[currentIndex].classList.add('filled');
+                        currentIndex++;
+                        updateUI();
+
+                        // Simulate auto-submit when full
+                        if (currentIndex === 6) {
+                            setTimeout(() => {
+                                // Add success visual cue
+                                inputs.forEach(inp => {
+                                    inp.style.borderColor = '#0052cc';
+                                    inp.style.backgroundColor = '#e9edff';
+                                    inp.style.color = '#0052cc';
+                                });
+                                qrStatus.textContent = 'PIN hợp lệ';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+
+            headerBackBtn.addEventListener('click', () => {
+                if (window.history.length > 1) {
+                    window.history.back();
+                    return;
+                }
+                window.location.href = '/Locker/01-Home/index.html';
+            });
+
+            qrFrame.addEventListener('click', () => {
+                qrStatus.textContent = 'QR hợp lệ';
+                qrStatus.classList.remove('bg-on-surface/80');
+                qrStatus.classList.add('bg-primary-container', 'text-on-primary');
+            });
+
+            confirmBtn.addEventListener('click', () => {
+                if (confirmBtn.disabled) {
+                    return;
+                }
+                window.location.href = '/Locker/01-Home/index.html';
+            });
+
+            backBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    inputs[currentIndex].textContent = '';
+                    inputs[currentIndex].classList.remove('filled');
+                    inputs[currentIndex].style.borderColor = '';
+                    inputs[currentIndex].style.backgroundColor = '';
+                    updateUI();
+                }
+            });
+
+            delBtn.addEventListener('click', () => {
+                inputs.forEach(input => {
+                    input.textContent = '';
+                    input.classList.remove('filled');
+                    input.style.borderColor = '';
+                    input.style.backgroundColor = '';
+                });
+                currentIndex = 0;
+                updateUI();
+                qrStatus.textContent = 'Đang quét...';
+                qrStatus.classList.add('bg-on-surface/80');
+                qrStatus.classList.remove('bg-primary-container', 'text-on-primary');
+            });
+        });
+    </script>
+</body></html>
